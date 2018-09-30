@@ -1,0 +1,20 @@
+
+<div class="container">
+
+  <%= simple_form_for [@search] do |f| %>
+    <%= f.input :goal %>
+    <%= f.input :old_new_type %>
+    <%= f.input :house_type %>
+    <%= f.input :location %>
+    <%= f.input :min_budget %>
+    <%= f.input :max_budget %>
+    <%= f.input :min_living_space %>
+    <%= f.input :max_living_space %>
+    <%= f.input :min_land_area %>
+    <%= f.input :max_land_area %>
+    <%= f.input :rooms %>
+    <%= f.input :bedrooms %>
+    <%= f.submit "voir les annonces", class: "btn btn-primary" %>
+  <% end %>
+
+</div>
