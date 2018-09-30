@@ -1,5 +1,9 @@
 class SearchesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create]
+  skip_before_action :authenticate_user!, only: [:new, :create, :show]
+
+  def show
+    @search = Search.find(params[:id])
+  end
 
   def new
     @search = Search.new
@@ -7,15 +11,18 @@ class SearchesController < ApplicationController
 
   def create
     @search = Search.new(search_params)
-    @search.save
-    redirect_to search_path(@restaurant)
+    if @search.save
+      redirect_to search_path(@search)
+    else
+      render :new
+    end
   end
 
 
   private
 
   def search_params
-    params.require(:search).permit(:content)
+    params.require(:search).permit(:goal, :old_new_type, :house_type, :location, :min_budget, :max_budget,
+      :min_living_space, :max_living_space, :min_land_area, :max_land_area, :rooms, :bedrooms)
   end
-
 end

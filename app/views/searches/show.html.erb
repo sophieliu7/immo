@@ -1,0 +1,22 @@
+
+<div class="container">
+
+  <h1>Critères</h1>
+
+  <ul>
+    <li>Quel est votre projet ? : <%= @search.goal %></li>
+    <li>Ancien/neuf ? : <%= @search.old_new_type %></li>
+    <li>Type de bien : <%= @search.house_type %></li>
+    <li>Où cherchez-vous ? : <%= @search.location %></li>
+    <li>Budget entre <%= @search.min_budget %> € et <%= @search.max_budget %>€ </li>
+    <li>Surface habitable entre <%= @search.min_living_space %>m² et <%= @search.max_living_space %>m² </li>
+    <li>Surface du terrain entre <%= @search.min_land_area %>m² et <%= @search.max_land_area %>m²</li>
+    <li>Nombre de pièces : <%= @search.rooms %></li>
+    <li>Nombre de chambres : <%= @search.bedrooms %></li>
+  </ul>
+
+  <h1>Annonces</h1>
+
+
+</div>
+

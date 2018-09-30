@@ -2,9 +2,9 @@
 <div class="container">
 
   <%= simple_form_for [@search] do |f| %>
-    <%= f.input :goal %>
-    <%= f.input :old_new_type %>
-    <%= f.input :house_type %>
+    <%= f.input :goal, collection: ['louer', 'acheter'] %>
+    <%= f.input :old_new_type, collection: ['ancien', 'neuf', 'viager'] %>
+    <%= f.input :house_type, collection: ['appartement', 'maison', 'terrain', 'parking box', 'lot/atelier', 'chateau', 'hotel particulier', 'batiment', 'immeuble'] %>
     <%= f.input :location %>
     <%= f.input :min_budget %>
     <%= f.input :max_budget %>
@@ -12,9 +12,10 @@
     <%= f.input :max_living_space %>
     <%= f.input :min_land_area %>
     <%= f.input :max_land_area %>
-    <%= f.input :rooms %>
-    <%= f.input :bedrooms %>
+    <%= f.input :rooms, collection: ['Studio', '2', '3', '4', '5+'] %>
+    <%= f.input :bedrooms, collection: ['1', '2', '3', '4', '5+'] %>
     <%= f.submit "voir les annonces", class: "btn btn-primary" %>
   <% end %>
 
 </div>
+
