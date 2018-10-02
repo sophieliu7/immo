@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     @url = @search.seloger_url
+    @parseur = @search.test
   end
 
   def new

@@ -86,12 +86,56 @@ class Search < ApplicationRecord
     xml_file = open(url).read
     document  = Nokogiri::XML(xml_file)
 
-    document.root.xpath('entry').each do |element|
-      name = element.xpath('title').text
+    #result = document.xpath('//xmlns:entry').text
+    #result = document.css('title')
+    # document.root.xpath('title').each do |element
+    #   name = element.xpath('title').text
+    # end
+
+    result = []
+    document.root.xpath('//xmlns:entry').each do |entry|
+       name = entry.xpath('title')
+       result << name
     end
-    return name
+    return result
   end
 
+  def news
+    require 'rss'
+    require 'open-uri'
+    rss_results = []
+    rss = RSS::Parser.parse(open('http://feeds.feedburner.com/CoinDesk?format=xml').read, false).items[0..5]
 
+    rss.each do |result|
+      result = { title: result.title, date: result.pubDate, link: result.link, description: result.description }
+      rss_results.push(result)
+    end
+      return rss_results
+  end
+
+  def parseur
+    require 'rss'
+    require 'open-uri'
+    rss_results = []
+    rss = RSS::Parser.parse(open('https://www.seloger.com/rss,recherche_atom.xml?idtt=1&idtypebien=1&nb_pieces=1&cp=75&tri=d_dt_crea').read, false).items[0..5]
+
+    rss.each do |result|
+      result = { title: result.title, content: result.content }
+      rss_results.push(result)
+    end
+      return rss
+  end
+
+  def test
+    require 'rss'
+    require 'open-uri'
+
+    url = 'https://www.seloger.com/rss,recherche_atom.xml?idtt=1&idtypebien=1&nb_pieces=1&cp=75&tri=d_dt_crea'
+    open(url) do |rss|
+      feed = RSS::Parser.parse(rss)
+      result = "Title: #{feed.entry.title}"
+    end
+
+  end
 
 end
