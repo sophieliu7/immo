@@ -3,6 +3,7 @@ class SearchesController < ApplicationController
 
   def show
     @search = Search.find(params[:id])
+    @url = @search.seloger_url
   end
 
   def new

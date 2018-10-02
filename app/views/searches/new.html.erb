@@ -4,7 +4,7 @@
   <%= simple_form_for [@search] do |f| %>
     <%= f.input :goal, collection: ['louer', 'acheter'] %>
     <%= f.input :old_new_type, collection: ['ancien', 'neuf', 'viager'] %>
-    <%= f.input :house_type, collection: ['appartement', 'maison', 'terrain', 'parking box', 'lot/atelier', 'chateau', 'hotel particulier', 'batiment', 'immeuble'] %>
+    <%= f.input :house_type, collection: ['appartement', 'maison', 'terrain', 'parking box', 'loft/atelier', 'chateau', 'hotel particulier', 'batiment', 'immeuble'] %>
     <%= f.input :location %>
     <%= f.input :min_budget %>
     <%= f.input :max_budget %>
