@@ -74,7 +74,7 @@ class Search < ApplicationRecord
       end
     end
 
-    url = "https://www.seloger.com/rss,recherche_atom.xml/?" + url_variables + "cp=75"
+    url = "https://www.seloger.com/rss,recherche_atom.xml?" + url_variables + "cp=75"
     return url
 
   end
