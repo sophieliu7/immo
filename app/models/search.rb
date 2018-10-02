@@ -135,7 +135,7 @@ class Search < ApplicationRecord
       array << item.updated.content
       array << item.content.content
     end
-
+    return array
   end
 
 end
