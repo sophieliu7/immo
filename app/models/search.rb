@@ -128,12 +128,12 @@ class Search < ApplicationRecord
 
   def test
     require 'rss'
-    require 'open-uri'
-
-    url = 'https://www.seloger.com/rss,recherche_atom.xml?idtt=1&idtypebien=1&nb_pieces=1&cp=75&tri=d_dt_crea'
-    open(url) do |rss|
-      feed = RSS::Parser.parse(rss)
-      result = "Title: #{feed.entry.title}"
+    array = []
+    rss = RSS::Parser.parse('https://www.seloger.com/rss,recherche_atom.xml?idtt=1&idtypebien=1&nb_pieces=1&cp=75&tri=d_dt_crea', false)
+    rss.items.each do |item|
+      array << item.title.content
+      array << item.updated.content
+      array << item.content.content
     end
 
   end
