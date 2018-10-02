@@ -41,7 +41,6 @@ class Search < ApplicationRecord
     url_variables += "surfacemin=#{min_living_space}&" unless min_living_space.nil?
     url_variables += "surfacemax=#{max_living_space}&" unless max_living_space.nil?
 
-
     # url variable generator for Number of rooms
     rooms_reference = {
       "0" => "nb_pieces=1",
@@ -76,7 +75,21 @@ class Search < ApplicationRecord
 
     url = "https://www.seloger.com/rss,recherche_atom.xml?" + url_variables + "cp=75" + "&tri=d_dt_crea"
     return url
+  end
 
+
+  def xml_parseur
+    require 'nokogiri'
+    require 'open-uri'
+    url = "https://www.seloger.com/rss,recherche_atom.xml?idtt=1&idtypebien=1&nb_pieces=1&cp=75&tri=d_dt_crea"
+
+    xml_file = open(url).read
+    document  = Nokogiri::XML(xml_file)
+
+    document.root.xpath('entry').each do |element|
+      name = element.xpath('title').text
+    end
+    return name
   end
 
 
