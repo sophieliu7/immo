@@ -83,8 +83,11 @@ class Search < ApplicationRecord
     array = []
     rss = RSS::Parser.parse(seloger_url, false)
     rss.items.each do |item|
+      # parsing of the description of the accomodation
       clean_content = item.content.content.gsub(/<img.*/, "")
+      # parsing of the image url
       image_url = item.content.content.strip.gsub('<img src="', '').split(".jpg").first.gsub('100x100','500x500') + ".jpg"
+      # creating an array of arrays of accomodation
       array << [item.title.content, item.updated.content, clean_content, image_url, item.link.href]
     end
     return array

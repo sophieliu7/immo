@@ -14,24 +14,24 @@
   <%= simple_form_for [@search] do |f| %>
     <div class="col-xs-12 col-sm-4">
       <!-- insert <div class="card"> -->
-    <%= f.input :goal, collection: ['louer', 'acheter'] %>
+    <%= f.input :goal, collection: ['louer', 'acheter'], label: "Quel objectif ?" %>
     <%= f.input :old_new_type, collection: ['ancien', 'neuf', 'viager'] %>
-    <%= f.input :house_type, collection: ['appartement', 'maison', 'terrain', 'parking box', 'loft/atelier', 'chateau', 'hotel particulier', 'batiment', 'immeuble'] %>
-    <%= f.input :location %>
+    <%= f.input :house_type, collection: ['appartement', 'maison', 'terrain', 'parking box', 'loft/atelier', 'chateau', 'hotel particulier', 'batiment', 'immeuble'], label: "Type de bien" %>
+    <%= f.input :location, placeholder: "Paris, Nantes...", label: "Où cherchez-vous ?" %>
     </div>
     <div class="col-xs-12 col-sm-4">
-    <%= f.input :min_budget %>
-    <%= f.input :max_budget %>
-    <%= f.input :min_living_space %>
-    <%= f.input :max_living_space %>
+    <%= f.input :min_budget, label: "Budget minimum", placeholder: " -- €" %>
+    <%= f.input :max_budget, label: "Budget maximum", placeholder: " -- €" %>
+    <%= f.input :min_living_space, label: "Surface habitable minimum", placeholder: " -- m²" %>
+    <%= f.input :max_living_space, label: "Surface habitable maximum", placeholder: " -- m²" %>
       <!-- insert <div class="card"> -->
     </div>
     <div class="col-xs-12 col-sm-4">
       <!-- insert <div class="card"> -->
-    <%= f.input :min_land_area %>
-    <%= f.input :max_land_area %>
-    <%= f.input :rooms, collection: ['Studio', '2', '3', '4', '5+'] %>
-    <%= f.input :bedrooms, collection: ['1', '2', '3', '4', '5+'] %>
+    <%= f.input :min_land_area, label: "Surface du terrain - min" %>
+    <%= f.input :max_land_area, label: "Surface du terrain - max" %>
+    <%= f.input :rooms, collection: ['Studio', '2', '3', '4', '5+'], label: "Combien de pièces ?" %>
+    <%= f.input :bedrooms, collection: ['1', '2', '3', '4', '5+'], label: "Combien de chambres ?" %>
     </div>
     <%= f.submit "voir les annonces", class: "btn btn-primary" %>
   <% end %>
