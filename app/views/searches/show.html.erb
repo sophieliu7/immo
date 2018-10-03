@@ -16,17 +16,26 @@
   </ul>
 
   <h1>Annonces</h1>
- <p>Pour info, c'est par défaut cp=75 pour le moment</p>
+  <p>Pour info, c'est par défaut cp=75 pour le moment</p>
   <%= @url %>
 
-  <% @parsed_content.each do |flat| %>
-  <h3> <%=  flat.first %></h3>
-  <p><%=  flat[1] %></p>
-  <p><%=  flat[2] %></p>
-  <p><%=  flat[3] %></p>
-  <p><%=  flat.last %></p>
-  <% end %>
 
+  <div class="container">
+    <div class="row">
+      <% @parsed_content.each do |flat| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= flat[3] %>);">
+          <div class="card-category"><%= flat[1] %></div>
+          <div class="card-description">
+            <h2><%=  flat.first %></h2>
+            <p><%=  flat[2] %></p>
+          </div>
+          <a class="card-link" href=<%= flat[4] %> ></a>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
 
 </div>
 
