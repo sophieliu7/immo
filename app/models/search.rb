@@ -83,12 +83,24 @@ class Search < ApplicationRecord
     array = []
     rss = RSS::Parser.parse(seloger_url, false)
     rss.items.each do |item|
+      # Updated how many minutes ago ?
+      time_ago = ((Time.now - item.updated.content.to_time) / 60).truncate(0)
       # parsing of the description of the accomodation
-      clean_content = item.content.content.gsub(/<img.*/, "")
+      clean_content = item.content.content.split("m²\n").last.strip
+      # nombre de pièce
+      nb_piece = item.content.content.gsub(/<img.*/, "").split("Surface").first.strip
+      # Surface
+      surface = item.content.content.split("Surface:").last.split("m²").first.strip + "m²"
       # parsing of the image url
-      image_url = item.content.content.strip.gsub('<img src="', '').split(".jpg").first.gsub('100x100','500x500') + ".jpg"
+      image_url = item.content.content.strip.sub('<img src="', '').split(".jpg").first.gsub('100x100','400x400') + ".jpg"
       # creating an array of arrays of accomodation
-      array << [item.title.content, item.updated.content, clean_content, image_url, item.link.href]
+      array << [item.title.content,
+        time_ago,
+        clean_content,
+        nb_piece,
+        surface,
+        image_url,
+        item.link.href]
     end
     return array
   end
