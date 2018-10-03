@@ -18,6 +18,15 @@
   <h1>Annonces</h1>
  <p>Pour info, c'est par défaut cp=75 pour le moment</p>
   <%= @url %>
-  <%= @parseur %>
+
+  <% @parsed_content.each do |flat| %>
+  <h3> <%=  flat.first %></h3>
+  <p><%=  flat[1] %></p>
+  <p><%=  flat[2] %></p>
+  <p><%=  flat[3] %></p>
+  <p><%=  flat.last %></p>
+  <% end %>
+
+
 </div>
 

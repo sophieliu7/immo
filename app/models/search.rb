@@ -78,62 +78,14 @@ class Search < ApplicationRecord
   end
 
 
-  def xml_parseur
-    require 'nokogiri'
-    require 'open-uri'
-    url = "https://www.seloger.com/rss,recherche_atom.xml?idtt=1&idtypebien=1&nb_pieces=1&cp=75&tri=d_dt_crea"
-
-    xml_file = open(url).read
-    document  = Nokogiri::XML(xml_file)
-
-    #result = document.xpath('//xmlns:entry').text
-    #result = document.css('title')
-    # document.root.xpath('title').each do |element
-    #   name = element.xpath('title').text
-    # end
-
-    result = []
-    document.root.xpath('//xmlns:entry').each do |entry|
-       name = entry.xpath('title')
-       result << name
-    end
-    return result
-  end
-
-  def news
-    require 'rss'
-    require 'open-uri'
-    rss_results = []
-    rss = RSS::Parser.parse(open('http://feeds.feedburner.com/CoinDesk?format=xml').read, false).items[0..5]
-
-    rss.each do |result|
-      result = { title: result.title, date: result.pubDate, link: result.link, description: result.description }
-      rss_results.push(result)
-    end
-      return rss_results
-  end
-
-  def parseur
-    require 'rss'
-    require 'open-uri'
-    rss_results = []
-    rss = RSS::Parser.parse(open('https://www.seloger.com/rss,recherche_atom.xml?idtt=1&idtypebien=1&nb_pieces=1&cp=75&tri=d_dt_crea').read, false).items[0..5]
-
-    rss.each do |result|
-      result = { title: result.title, content: result.content }
-      rss_results.push(result)
-    end
-      return rss
-  end
-
-  def test
+  def seloger_xml_parseur
     require 'rss'
     array = []
-    rss = RSS::Parser.parse('https://www.seloger.com/rss,recherche_atom.xml?idtt=1&idtypebien=1&nb_pieces=1&cp=75&tri=d_dt_crea', false)
+    rss = RSS::Parser.parse(seloger_url, false)
     rss.items.each do |item|
-      array << item.title.content
-      array << item.updated.content
-      array << item.content.content
+      clean_content = item.content.content.gsub(/<img.*/, "")
+      image_url = item.content.content.strip.gsub('<img src="', '').split(".jpg").first + ".jpg"
+      array << [item.title.content, item.updated.content, clean_content, image_url, item.link.href]
     end
     return array
   end
