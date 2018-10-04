@@ -17,7 +17,8 @@
     <%= f.input :goal, collection: ['louer', 'acheter'], label: "Quel objectif ?" %>
     <%= f.input :old_new_type, collection: ['ancien', 'neuf', 'viager'] %>
     <%= f.input :house_type, collection: ['appartement', 'maison', 'terrain', 'parking box', 'loft/atelier', 'chateau', 'hotel particulier', 'batiment', 'immeuble'], label: "Type de bien" %>
-    <%= f.input :location, placeholder: "Paris, Nantes...", label: "Où cherchez-vous ?" %>
+    <%= f.input :location, placeholder: "Paris, Nantes...", label: "Où cherchez-vous ?", input_html: { class:'select2'}  %>
+
     </div>
     <div class="col-xs-12 col-sm-4">
     <%= f.input :min_budget, label: "Budget minimum", placeholder: " -- €" %>
@@ -38,5 +39,10 @@
   </div>
 </div>
 
-
+<%= select_tag "timezone", options_from_collection_for_select(
+      ActiveSupport::TimeZone.all.
+        map { |tz| tz.tzinfo }.
+        sort_by { |tzinfo| tzinfo.name },
+      :name, :name),
+      class: 'select2' %>
 
