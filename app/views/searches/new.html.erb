@@ -17,7 +17,7 @@
     <%= f.input :goal, collection: ['louer', 'acheter'], label: "Quel objectif ?" %>
     <%= f.input :old_new_type, collection: ['ancien', 'neuf', 'viager'] %>
     <%= f.input :house_type, collection: ['appartement', 'maison', 'terrain', 'parking box', 'loft/atelier', 'chateau', 'hotel particulier', 'batiment', 'immeuble'], label: "Type de bien" %>
-    <%= f.input :location, placeholder: "Paris, Nantes...", label: "Où cherchez-vous ?" , as: :select, input_html: {class:'select2', multiple:'multiple'}, collection: Search.all %>
+    <%= f.input :location, placeholder: "Paris, Nantes...", label: "Où cherchez-vous ?" , as: :select, input_html: {class:'select2', multiple:'multiple'}, collection: @communes %>
 
     </div>
     <div class="col-xs-12 col-sm-4">

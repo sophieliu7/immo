@@ -9,6 +9,7 @@ class SearchesController < ApplicationController
 
   def new
     @search = Search.new
+    @communes = communes
   end
 
   def create
@@ -26,5 +27,15 @@ class SearchesController < ApplicationController
   def search_params
     params.require(:search).permit(:goal, :old_new_type, :house_type, :location, :min_budget, :max_budget,
       :min_living_space, :max_living_space, :min_land_area, :max_land_area, :rooms, :bedrooms)
+  end
+
+  def communes
+    require 'csv'
+    filepath = 'app/controllers/communes.csv'
+    communes = []
+    CSV.foreach(filepath) do |row|
+      communes << row
+    end
+    return communes
   end
 end
