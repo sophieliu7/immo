@@ -22,23 +22,27 @@
 
 
     <div class="row">
-      <% @parsed_content.each do |flat| %>
-      <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= flat[5] %>);">
-          <div class="card-category"><i class="far fa-clock"></i> il y a <%= flat[1] %> min</div>
-          <div class="card-description">
-            <!-- title -->
-            <h2><%=  flat[0] %></h2>
-            <!-- piece -->
-            <p class="card-button btn"><%= flat[3] %></p>
-            <!-- surface -->
-            <p class="card-button btn"><%= flat[4] %></p>
-            <!-- description -->
-            <p><%=  flat[2] %></p>
+      <% if @parsed_content.nil? %>
+        <p>parsed content is nil</p>
+      <% else %>
+          <% @parsed_content.each do |flat| %>
+          <div class="col-xs-12 col-sm-4">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= flat[5] %>);">
+              <div class="card-category"><i class="far fa-clock"></i> il y a <%= flat[1] %> min</div>
+              <div class="card-description">
+                <!-- title -->
+                <h2><%=  flat[0] %></h2>
+                <!-- piece -->
+                <p class="card-button btn"><%= flat[3] %></p>
+                <!-- surface -->
+                <p class="card-button btn"><%= flat[4] %></p>
+                <!-- description -->
+                <p><%=  flat[2] %></p>
+              </div>
+              <a class="card-link" href=<%= flat[6] %> ></a>
+            </div>
           </div>
-          <a class="card-link" href=<%= flat[6] %> ></a>
-        </div>
-      </div>
+          <% end %>
       <% end %>
     </div>
 

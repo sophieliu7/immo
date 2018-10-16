@@ -24,14 +24,14 @@
   <%= simple_form_for [@search] do |f| %>
 
     <!-- <div class="section is-active"> -->
-      <%= f.input :goal, as: :check_boxes, collection: ['louer', 'acheter'], label: "Quel objectif ?" %>
+      <%= f.input :goal, as: :radio_buttons, collection: ['louer', 'acheter'], label: "Quel objectif ?" %>
       <%= f.input :location, placeholder: "Paris, Nantes...", label: "Où cherchez-vous ?" , as: :select, input_html: {class:'select2', multiple:'multiple'}, collection: @communes %>
       <!-- <div class="button">Next</div> -->
     <!-- </div> -->
 
     <!-- <div class="section"> -->
-      <%= f.input :old_new_type, as: :check_boxes, collection: ['ancien', 'neuf', 'viager'] %>
-      <%= f.input :house_type, as: :check_boxes, collection: ['appartement', 'maison', 'terrain', 'parking box', 'loft/atelier', 'chateau', 'hotel particulier', 'batiment', 'immeuble'], label: "Type de bien" %>
+      <%= f.input :old_new_type, as: :radio_buttons, collection: ['ancien', 'neuf', 'viager'] %>
+      <%= f.input :house_type, as: :radio_buttons, collection: ['appartement', 'maison', 'terrain', 'parking box', 'loft/atelier', 'chateau', 'hotel particulier', 'batiment', 'immeuble'], label: "Type de bien" %>
         <!-- <div class="button">Next</div> -->
     <!-- </div> -->
 
@@ -42,8 +42,8 @@
     <!-- </div> -->
 
     <!-- <div class="section"> -->
-      <%= f.input :rooms, as: :check_boxes, collection: ['Studio', '2', '3', '4', '5+'], label: "Combien de pièces ?" %>
-      <%= f.input :bedrooms, as: :check_boxes, collection: ['1', '2', '3', '4', '5+'], label: "Combien de chambres ?" %>
+      <%= f.input :rooms, as: :radio_buttons, collection: ['Studio', '2', '3', '4', '5+'], label: "Combien de pièces ?" %>
+      <%= f.input :bedrooms, as: :radio_buttons, collection: ['1', '2', '3', '4', '5+'], label: "Combien de chambres ?" %>
         <!-- <div class="button">Next</div> -->
     <!-- </div> -->
 
@@ -53,7 +53,7 @@
       <%= f.input :min_land_area, label: "Surface du terrain - min" %>
       <%= f.input :max_land_area, label: "Surface du terrain - max" %>
       <%= f.submit "voir les annonces", class: "btn btn-primary" %>
-    </div>
+    <!-- </div> -->
   <% end %>
   </div>
   </div>
