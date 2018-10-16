@@ -9,6 +9,8 @@
 
 
 <div class="container">
+  <div class="wrapper">
+
 
   <ul class="steps">
     <li class="is-active">Step 1</li>
@@ -16,36 +18,44 @@
     <li>Step 3</li>
   </ul>
 
+<div class="form-wrapper">
+
   <div class="row">
   <%= simple_form_for [@search] do |f| %>
 
-    <div class="section is-active">
+    <!-- <div class="section is-active"> -->
       <%= f.input :goal, as: :check_boxes, collection: ['louer', 'acheter'], label: "Quel objectif ?" %>
       <%= f.input :location, placeholder: "Paris, Nantes...", label: "Où cherchez-vous ?" , as: :select, input_html: {class:'select2', multiple:'multiple'}, collection: @communes %>
-    </div>
+      <!-- <div class="button">Next</div> -->
+    <!-- </div> -->
 
-    <div class="section">
+    <!-- <div class="section"> -->
       <%= f.input :old_new_type, as: :check_boxes, collection: ['ancien', 'neuf', 'viager'] %>
       <%= f.input :house_type, as: :check_boxes, collection: ['appartement', 'maison', 'terrain', 'parking box', 'loft/atelier', 'chateau', 'hotel particulier', 'batiment', 'immeuble'], label: "Type de bien" %>
-    </div>
+        <!-- <div class="button">Next</div> -->
+    <!-- </div> -->
 
-    <div class="section">
+    <!-- <div class="section"> -->
       <%= f.input :min_budget, label: "Budget minimum", placeholder: " -- €" %>
       <%= f.input :max_budget, label: "Budget maximum", placeholder: " -- €" %>
-    </div>
+        <!-- <div class="button">Next</div> -->
+    <!-- </div> -->
 
-    <div class="section">
+    <!-- <div class="section"> -->
       <%= f.input :rooms, as: :check_boxes, collection: ['Studio', '2', '3', '4', '5+'], label: "Combien de pièces ?" %>
       <%= f.input :bedrooms, as: :check_boxes, collection: ['1', '2', '3', '4', '5+'], label: "Combien de chambres ?" %>
-    </div>
+        <!-- <div class="button">Next</div> -->
+    <!-- </div> -->
 
-    <div class="section">
+    <!-- <div class="section"> -->
       <%= f.input :min_living_space, label: "Surface habitable minimum", placeholder: " -- m²" %>
       <%= f.input :max_living_space, label: "Surface habitable maximum", placeholder: " -- m²" %>
       <%= f.input :min_land_area, label: "Surface du terrain - min" %>
       <%= f.input :max_land_area, label: "Surface du terrain - max" %>
+      <%= f.submit "voir les annonces", class: "btn btn-primary" %>
     </div>
-    <%= f.submit "voir les annonces", class: "btn btn-primary" %>
   <% end %>
   </div>
+  </div>
+</div>
 </div>
